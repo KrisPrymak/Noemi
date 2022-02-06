@@ -23,36 +23,30 @@
     }
     /*popup*/
     
-    .popup_cross {
-        position: absolute;
-        width: 20px;
+    .popup_close {
         top: -30px;
         right: 0;
+        width: 20px;
+        position: absolute;
     }
     
     .popup_hidden {
-        display: none;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
         position: fixed;
-        max-width: 390px;
-        background-color: #ffffff;
-        z-index: 1;
-        padding: 50px 30px;
-        left: 0;
-        top: 230px;
-        right: 0;
-        margin: auto;
-        z-index: 1;
+        z-index: 2;
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
     }
     
-    .popup_hidden:after {
-        content: "";
-        background-color: #000000;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        opacity: 0.8;
-        z-index: -1;
+    .popup_all {
+        max-width: 390px;
+        background-color: #ffffff;
+        padding: 50px 30px;
+        position: relative;
     }
     
     .popup_title {
@@ -70,6 +64,10 @@
         margin: 0 auto;
         margin-top: 10px;
         margin-bottom: 38px;
+    }
+    
+    .popup_container {
+        width: 100%;
     }
     
     .popup_question_title:not(:last-child) {
@@ -96,21 +94,38 @@
         background-size: 10px;
     }
     
-    .popup_radio {
+    .popup_select_option {
+        width: 100%;
+    }
+    
+    .popup_radio input[type=radio] {
         display: none;
     }
     
-    .popup_radio::before {
-        content: "";
-        position: absolute;
-        background-image: url("../SVG/form-circle.svg");
-        background-repeat: no-repeat;
-        background-position: 3% center;
-        background-size: 60px;
+    .popup_radio label {
+        cursor: pointer;
+        position: relative;
+        padding-left: 25px;
+        margin-right: 0;
+        user-select: none;
     }
     
-    .popup_radio:checked::before {
+    .popup_radio label::before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        left: 2px;
+        bottom: 1px;
         background-image: url("../SVG/form-empty-circle.svg");
+        background-repeat: no-repeat;
+        background-position: 3% center;
+        background-size: 20px 20px;
+    }
+    
+    .popup_radio input[type=radio]:checked+label::before {
+        background: url("../SVG/form-circle.svg");
+        background-size: 20px 20px;
     }
     
     .popup_text {
@@ -118,7 +133,7 @@
         background-color: #f3f7f6;
         border: 0;
         width: 100%;
-        color: #eeeeee3a;
+        color: #000000;
         padding-top: 20px;
         padding-left: 20px;
         text-align: top;
@@ -127,12 +142,14 @@
     .popup_botton {
         color: #fff;
         background-color: #b59f5b;
-        width: 100%;
+        width: inherit;
         border: 0;
         font-size: 17px;
         text-transform: uppercase;
         font-weight: bold;
         padding: 15px 120px;
+        display: flex;
+        justify-content: center;
     }
     /*header*/
     
@@ -163,8 +180,8 @@
     }
     
     .header-content {
-        width: 72.28%;
-        padding: 1.68% 0.9% 7.6% 0.9%;
+        max-width: 1200px;
+        padding: 28px 15px 126px 15px;
         margin: 0 auto;
     }
     
@@ -269,7 +286,9 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        margin: 155px 25px 20px 25px
+        /*margin: 155px 25px 20px 25px;*/
+        margin: 9vw 1.5vw 1.2vw;
+        padding: 30px;
     }
     
     .trends_categories {
@@ -297,30 +316,21 @@
     
     .trends_article1 {
         background-image: url("../images/trend1.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-color: #000000;
     }
     
     .trends_article2 {
         background-image: url("../images/trend2.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-color: #000000;
     }
     
     .trends_article3 {
         background-image: url("../images/trend3.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-color: #000000;
     }
     
     .trends_article4 {
         background-image: url("../images/trend4.jpg");
+    }
+    
+    .trends_article1 .trends_article2 .trends_article3 .trends_article4 {
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -555,7 +565,6 @@
         margin-bottom: 6px;
         text-align: center;
         text-transform: uppercase;
-        display: inline-block;
     }
     
     .teg-box:nth-child(3n) {
@@ -727,6 +736,8 @@
         font-size: 0;
         padding-top: 30px;
         padding-bottom: 30px;
+        display: flex;
+        justify-content: center;
     }
     
     .footer {
@@ -743,7 +754,6 @@
     
     .socials-item {
         margin-right: 30px;
-        display: inline-block;
     }
     
     .footer-copyright {
@@ -781,9 +791,6 @@
     }
     
     @media (min-width: 641px) and (max-width: 1199px) {
-        .popup_hidden {
-            top: 32vw;
-        }
         .header {
             background-image: url("../images/banner-bg-tablet.jpg");
             min-width: 0;
@@ -793,6 +800,7 @@
         }
         .header-content {
             max-width: 700px;
+            width: calc(100% - 70px);
             padding: 50px 35px 125px 35px;
             box-sizing: content-box;
         }
@@ -836,9 +844,8 @@
         }
         .page {
             min-width: 641px;
-            margin-right: 35px;
-            margin-left: 35px;
-            padding: 0;
+            padding-right: 35px;
+            padding-left: 35px;
             margin-top: 50px;
         }
         .article {
@@ -870,14 +877,19 @@
             margin-top: 15px;
         }
         .shop {
-            width: 700px;
-            margin: 0 auto;
+            width: 100%;
+            padding-left: 35px;
+            padding-right: 35px;
         }
         .shop_container {
             flex-wrap: wrap;
         }
+        .shop_img {
+            width: 100% 100%;
+        }
         .shop_content {
             margin-top: 196px;
+            width: 100%;
         }
         .shop_article {
             margin-right: 20px;
@@ -888,24 +900,39 @@
         }
         .footer {
             min-width: 0;
-            margin-left: 35px;
-            margin-right: 35px;
+            padding-left: 35px;
+            padding-right: 35px;
         }
         .footer-container {
-            width: 700px;
+            width: 100%;
             padding: 0;
         }
     }
     
     @media (max-width: 640px) {
-        .popup_hidden {
-            margin-left: 15px;
-            margin-right: 15px;
-            max-width: 330px;
+        .popup_all {
+            width: calc(100% - 30px);
+            margin: 55px auto;
+        }
+        .popup_question_title:not(:last-child) {
+            /*margin-top: 33px;*/
+            margin-top: 9.1vw;
+        }
+        .popup_question_title {
+            /*margin-bottom: 10px;*/
+            margin-bottom: 2.7vw;
+        }
+        .popup_title::after {
+            margin-top: 2.7vw;
+            margin-bottom: 10.5vw;
+        }
+        .popup_botton {
+            padding: 15px 0;
         }
         .header {
             background-image: url("../images/banner-mobile.jpg");
             min-width: 0;
+            background-size: cover;
         }
         .header-inner {
             flex-direction: column;
@@ -915,9 +942,7 @@
             align-self: auto;
         }
         .header-content {
-            max-width: 330px;
-            padding: 30px 30px 215px;
-            box-sizing: content-box;
+            padding: 30px 15px 215px;
         }
         .nav_burger {
             margin-right: -29px;
@@ -926,8 +951,9 @@
             margin-top: 45px;
         }
         .logo {
-            width: 270px;
-            padding-top: 170px;
+            margin: 0 auto;
+            margin-top: 170px;
+            width: 82%;
         }
         .logo_order {
             order: 2;
@@ -935,7 +961,7 @@
         .header-title {
             font-size: 26px;
             line-height: 1.4;
-            max-width: 280px;
+            width: 82%;
             font-weight: bold;
         }
         .nav_desc {
@@ -964,9 +990,8 @@
         }
         .page {
             flex-direction: column;
-            margin-right: 15px;
-            margin-left: 15px;
-            padding: 0;
+            padding-right: 15px;
+            padding-left: 15px;
             margin-top: 45px;
         }
         .content {
@@ -1005,16 +1030,23 @@
         }
         .aside {
             margin-top: 45px;
-            width: 330px;
+            width: 100%;
+        }
+        .newpost-title {
+            width: 100%;
+        }
+        .search_block {
+            width: calc(100% - 50px);
         }
         .search-place {
-            width: 280px;
+            width: 100%;
         }
         .search-box {
-            width: 50px;
+            max-width: 50px;
         }
         .shop {
-            width: 330px;
+            max-width: 330px;
+            width: 100%;
         }
         .shop_container {
             flex-direction: column;
@@ -1025,16 +1057,26 @@
         }
         .shop_content {
             margin-top: 250px;
-            width: 330px;
+            width: 100%;
         }
         .footer {
             min-width: 0;
-            margin-left: 15px;
-            margin-right: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
             margin-top: 45px;
         }
         .footer-container {
-            width: 330px;
+            width: 100%;
             padding: 0;
+        }
+    }
+    
+    @media (orientation: landscape) and (max-width: 640px) {
+        .trends_container {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .trends_article {
+            width: calc(50% - 4px);
         }
     }
