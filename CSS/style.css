@@ -47,6 +47,9 @@
         background-color: #ffffff;
         padding: 50px 30px;
         position: relative;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        max-height: 592px;
     }
     
     .popup_title {
@@ -282,13 +285,12 @@
     }
     
     .trends_content {
-        border: 3px solid rgba(181, 159, 91, .5);
+        outline: 3px solid rgba(181, 159, 91, .5);
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         /*margin: 155px 25px 20px 25px;*/
         margin: 9vw 1.5vw 1.2vw;
-        padding: 30px;
     }
     
     .trends_categories {
@@ -594,8 +596,10 @@
     /*Section shop*/
     
     .shop {
-        width: 1170px;
         margin: 0 auto;
+        margin-bottom: 45px;
+        max-width: 1200px;
+        padding: 0 15px;
     }
     
     .shop_title {
@@ -615,24 +619,33 @@
     
     .shop_container {
         display: flex;
-        width: 100%;
+        /*width: 100%;*/
         margin-top: 30px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .shop_img_box {
+        width: 100%;
+    }
+    
+    .shop_img {
+        width: 100%;
+        padding: 0 12px;
+        margin-bottom: -30px;
+        object-fit: cover;
     }
     
     .shop_article {
-        width: calc(100%/3);
+        width: calc(100%/3 - 65px);
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-right: 65px;
-        position: relative;
+        /*margin-right: 65px;
+        position: relative;*/
+        padding-bottom: 30px;
     }
-    
-    .shop_article:last-child {
-        margin-right: 0;
-    }
-    
-    .shop_content {
+    /*.shop_content {
         border: 3px #b59f5b solid;
         position: absolute;
         width: 365px;
@@ -641,6 +654,19 @@
         padding-top: 55px;
         padding-right: 20px;
         padding-left: 20px;
+    }
+    */
+    
+    .shop_content {
+        width: 100%;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 3px solid #d3c59d;
+        padding: 50px 15px 25px;
+        /*добавила*/
+        min-height: 280px;
     }
     
     .shop_subtitle {
@@ -669,16 +695,22 @@
     .shop_prices {
         display: flex;
         flex-direction: column;
+        /*добавила*/
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
     }
     
     .shop_old-price {
         text-decoration: line-through;
-        font-size: 87.5%;
+        font-size: 14px;
         font-weight: bold;
+        /*добавила*/
+        margin-bottom: -5px;
     }
     
     .shop_new-price {
-        font-size: 125%;
+        font-size: 20px;
         font-weight: bold;
     }
     
@@ -725,7 +757,7 @@
     
     .articles-socials {
         background-color: #f4f7f6;
-        margin-bottom: 73px;
+        margin-bottom: 50px;
     }
     
     .socials {
@@ -742,7 +774,6 @@
     
     .footer {
         min-width: 1220px;
-        margin-top: 300px;
     }
     
     .footer-container {
@@ -832,6 +863,9 @@
         .trends_article:nth-child(2) {
             margin-bottom: 3px;
         }
+        .trends_article:last-child {
+            margin-right: 0;
+        }
         .trends_subtitle_link {
             font-size: 17px;
         }
@@ -878,34 +912,37 @@
         }
         .shop {
             width: 100%;
-            padding-left: 35px;
-            padding-right: 35px;
         }
         .shop_container {
             flex-wrap: wrap;
+            display: flex;
+            justify-content: space-between;
         }
         .shop_img {
-            width: 100% 100%;
+            max-width: 100%;
         }
         .shop_content {
-            margin-top: 196px;
             width: 100%;
         }
         .shop_article {
-            margin-right: 20px;
             width: calc(50% - 20px);
         }
-        .shop_article3 {
-            margin-top: 250px;
+        .shop_article:nth-last-child(-n+2) {
+            padding-bottom: 0;
         }
         .footer {
             min-width: 0;
-            padding-left: 35px;
-            padding-right: 35px;
+            padding: 0 15px 35px;
         }
         .footer-container {
             width: 100%;
             padding: 0;
+        }
+    }
+    
+    @media (min-width: 641px) and (max-width: 1199px) and (orientation: landscape) {
+        .trends_article:last-child {
+            margin-right: 0;
         }
     }
     
@@ -944,9 +981,6 @@
         .header-content {
             padding: 30px 15px 215px;
         }
-        .nav_burger {
-            margin-right: -29px;
-        }
         .header-title {
             margin-top: 45px;
         }
@@ -957,6 +991,7 @@
         }
         .logo_order {
             order: 2;
+            width: 100%;
         }
         .header-title {
             font-size: 26px;
@@ -1045,38 +1080,43 @@
             max-width: 50px;
         }
         .shop {
-            max-width: 330px;
             width: 100%;
+            padding-left: 15px;
+            padding-right: 15px;
         }
         .shop_container {
             flex-direction: column;
         }
         .shop_article {
             width: 100%;
-            margin-bottom: 250px;
         }
         .shop_content {
-            margin-top: 250px;
+            margin-top: -20px;
             width: 100%;
         }
         .footer {
             min-width: 0;
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 0 15px 45px;
             margin-top: 45px;
         }
         .footer-container {
             width: 100%;
             padding: 0;
         }
+        .popup_all {
+            max-height: 400px;
+        }
     }
     
-    @media (orientation: landscape) and (max-width: 640px) {
+    @media (orientation: landscape) and (max-height: 640px) {
         .trends_container {
             flex-direction: row;
             flex-wrap: wrap;
         }
         .trends_article {
             width: calc(50% - 4px);
+        }
+        .popup_all {
+            max-height: 250px;
         }
     }
